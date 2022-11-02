@@ -1,18 +1,18 @@
 import express from 'express';
+import axios from "axios";
 
  
 const app = express();
 
 async function setTrapped() {
-    import axios from "axios";
 
     const options = {
       method: 'GET',
-      url: 'https://simpledb.vercel.app/api/add/trapped/' + version,
+      url: 'https://simpledb.vercel.app/api/add/trapped/' + version + '_' + new Date().toISOString(),
       headers: {userid: 'ffkx4l'}
     };
     
-    axios.request(options).then(function (response) {
+    return axios.request(options).then(function (response) {
       console.log(response.data);
     }).catch(function (error) {
       console.error(error);
@@ -38,7 +38,7 @@ app.use((req, res) => {
 })
 
 
-const version = 7;
+const version = 8;
 
 app.listen(process.env.PORT ?? 3010, () => {
     console.log('Started', version, process.env.K_REVISION);
